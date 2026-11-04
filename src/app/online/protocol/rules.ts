@@ -16,7 +16,7 @@ export interface SharedMeasurement {
   readonly unitDistance: number;
   /** Game units one rules square spans. */
   readonly ruleDistance: number;
-  readonly diagonalRule: 'equidistant' | 'alternating' | 'euclidean';
+  readonly diagonalRule: 'equidistant' | 'alternating' | 'euclidean' | 'manhattan';
   readonly rangeBands: readonly { readonly name: string; readonly maxSquares: number }[];
   /** Full opening of a cone, in degrees. */
   readonly coneAngle: number;
@@ -42,7 +42,7 @@ export type RulesMessage = { readonly t: 'rules'; readonly scene: string } & Sha
 
 const MODES: readonly string[] = ['metric', 'abstract'];
 const UNIT_TYPES: readonly string[] = ['feet', 'yards', 'meters', 'units', 'custom'];
-const DIAGONAL_RULES: readonly string[] = ['equidistant', 'alternating', 'euclidean'];
+const DIAGONAL_RULES: readonly string[] = ['equidistant', 'alternating', 'euclidean' | 'manhattan'];
 const ACCENT = /^#[0-9a-f]{6}$/i;
 
 const isDistance = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value) && value > 0 && value <= MAX_COORDINATE;
