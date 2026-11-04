@@ -41,12 +41,14 @@ export function pathLengthInCells(grid: GridGeometry, points: readonly Point[], 
   let straight = 0;
   let diagonal = 0;
   let euclidean = 0;
+  let manhattan = 0;
   for (let i = 1; i < points.length; i++) {
     const dx = cellsBetween(points[i - 1]!.x, points[i]!.x, grid.size);
     const dy = cellsBetween(points[i - 1]!.y, points[i]!.y, grid.size);
     straight += Math.abs(dx - dy);
     diagonal += Math.min(dx, dy);
     euclidean += Math.hypot(dx, dy);
+    manhattan += Math.abs(dx) + Math.abs(dy);
   }
 
   switch (diagonalRule) {
@@ -56,5 +58,7 @@ export function pathLengthInCells(grid: GridGeometry, points: readonly Point[], 
       return straight + diagonal + Math.floor(diagonal / 2);
     case 'equidistant':
       return straight + diagonal;
+    case 'manhattan':
+      return manhattan;
   }
 }
