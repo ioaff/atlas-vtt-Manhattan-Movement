@@ -35,7 +35,7 @@ import { parseStatblockRoles } from '../statblocks/roles/roleValidation';
 
 const UNIT_TYPES: readonly GridUnitType[] = ['feet', 'yards', 'meters', 'units', 'custom'];
 const MEASUREMENT_MODES: readonly MeasurementMode[] = ['metric', 'abstract'];
-const DIAGONAL_RULES: readonly DiagonalRule[] = ['equidistant', 'alternating', 'euclidean'];
+const DIAGONAL_RULES: readonly DiagonalRule[] = ['equidistant', 'alternating', 'euclidean' | 'manhattan'];
 const DIFFICULT_TERRAIN_RULES: readonly DifficultTerrainRule[] = ['double', 'none'];
 
 type UnknownRecord = Record<string, unknown>;
